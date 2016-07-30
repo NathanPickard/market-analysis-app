@@ -2,6 +2,20 @@ var imageTracker = function (name, source) {
   this.imageSource = source;
   this.upVotes = 0;
   this.name = name;
+  
+  this.addInfo = function() {
+    var locationRow = document.createElement("tr");
+    var newTable = document.createElement("td");
+    newTable.innerText = this.name;
+    locationRow.appendChild(newTable);
+
+    var table = document.getElementById("voteTotal");
+    table.appendChild(locationRow);
+
+    var voteCount = document.createElement("td");
+    voteCount.innerText = this.upVotes;
+    locationRow.appendChild(voteCount);
+  };
 }
 
 var imageOptions = [
@@ -44,3 +58,7 @@ function recordClick(event) {
     } // if (clickedImageSource.indexOf(imageOptions[index].imageSource) >= 0)
   } // for (var index = 0; index < imageOptions.length; index++)
 }
+
+getThreeImages();
+var image = imageOptions[0];
+image.addInfo();
