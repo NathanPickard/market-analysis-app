@@ -1,7 +1,22 @@
+var totalClicks = 0;
 var imageTracker = function (name, source) {
   this.imageSource = source;
   this.upVotes = 0;
   this.name = name;
+
+  this.addInfo = function() {
+    var locationRow = document.createElement("tr");
+    var newTable = document.createElement("td");
+    newTable.innerText = this.name;
+    locationRow.appendChild(newTable);
+
+    var table = document.getElementById("voteTotal");
+    table.appendChild(locationRow);
+
+    var voteCount = document.createElement("td");
+    voteCount.innerText = this.upVotes;
+    locationRow.appendChild(voteCount);
+  };
 }
 
 var imageOptions = [
@@ -11,12 +26,20 @@ var imageOptions = [
   new imageTracker("Chair", "images/chair.jpg"),
   new imageTracker("Cthulhu", "images/cthulhu.jpg"),
   new imageTracker("Dragon", "images/dragon.jpg"),
+  new imageTracker("Pen", "images/pen.jpg"),
+  new imageTracker("Scissors", "images/scissors.jpg"),
+  new imageTracker("Shark", "images/shark.jpg"),
+  new imageTracker("Sweep", "images/sweep.jpg"),
+  new imageTracker("Unicorn", "images/unicorn.jpg"),
+  new imageTracker("Usb", "images/usb.jpg"),
+  new imageTracker("Water Can", "images/water_can.jpg"),
+  new imageTracker("Wine Glass", "images/wine_glass.jpg"),
 ];
 
 var pickedImages = []; // This is our memory - tracks which images we have shown
-// document.getElementById("image1").addEventListener("click", recordClick);
-// document.getElementById("image2").addEventListener("click", recordClick);
-// document.getElementById("image3").addEventListener("click", recordClick);
+ document.getElementById("image1").addEventListener("click", recordClick);
+ document.getElementById("image2").addEventListener("click", recordClick);
+ document.getElementById("image3").addEventListener("click", recordClick);
 document.getElementById("image-container").addEventListener("click", recordClick);
 
 function getThreeImages() {
@@ -34,6 +57,8 @@ function getThreeImages() {
 function recordClick(event) {
   var clickedImage = event.target;
   console.log(clickedImage);
+  totalClicks++;
+  console.log(totalClicks + "Total Clicks");
   var clickedImageSource = clickedImage.src;
   console.log("Clicked SRC: "+clickedImageSource);
   for (var index = 0; index < imageOptions.length; index++) {
@@ -44,3 +69,9 @@ function recordClick(event) {
     } // if (clickedImageSource.indexOf(imageOptions[index].imageSource) >= 0)
   } // for (var index = 0; index < imageOptions.length; index++)
 }
+
+getThreeImages();
+var image = imageOptions[0];
+image.addInfo();
+
+console.log(imageOptions[0].upvotes + "bannana Votes");
