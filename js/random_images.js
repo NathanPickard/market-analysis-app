@@ -62,7 +62,7 @@ function randomImageSelector() {
        imagesContainerQuery.style.display = "none";
        resetButtonQuery.style.display = "block";
        seeResultsQuery.style.display = "block";
-       seeResults();
+       showVotingTable();
      }
  };
 
@@ -103,7 +103,7 @@ function reset(event) {
   randomImageSelector();
 };
 
-// Creates voting reults table
+// Creates voting results table
 function showVotingTable(event) {
     var votingResults = document.getElementById("vote-results");
     var newTable = document.createElement("table");
@@ -114,7 +114,7 @@ function showVotingTable(event) {
     var tableHeader = document.createElement("tr");
     var tableHeaderCell = document.createElement("th");
     tableHeaderCell.setAttribute("colspan", "2");
-    var tableHeaderName = document.createTextNode("User Vote Totals");
+    var tableHeaderName = document.createTextNode("Total User Votes");
     tableHeaderCell.appendChild(tableHeaderName);
     tableHeader.appendChild(tableHeaderCell);
     table.appendChild(tableHeader);
