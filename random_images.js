@@ -19,6 +19,7 @@ var imageTracker = function (name, source) {
   };
 }
 
+
 var imageOptions = [
   new imageTracker("Banana", "images/banana.jpg"),
   new imageTracker("Bag", "images/bag.jpg"),
@@ -40,7 +41,7 @@ var pickedImages = []; // This is our memory - tracks which images we have shown
  document.getElementById("image1").addEventListener("click", recordClick);
  document.getElementById("image2").addEventListener("click", recordClick);
  document.getElementById("image3").addEventListener("click", recordClick);
-document.getElementById("image-container").addEventListener("click", recordClick);
+ document.getElementById("image-container").addEventListener("click", recordClick);
 
 function getThreeImages() {
   pickedImages = []; // Empty this so that we can track 3 new images
