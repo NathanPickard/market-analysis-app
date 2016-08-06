@@ -3,7 +3,11 @@ var imageTracker = function (name, source) {
   this.imageSource = source;
   this.upVotes = 0;
   this.name = name;
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> e84e2ca239a95176d94e7b167059e29d3d712795
   this.addInfo = function() {
     var locationRow = document.createElement("tr");
     var newTable = document.createElement("td");
@@ -73,6 +77,10 @@ function recordClick(event) {
 
 getThreeImages();
 var image = imageOptions[0];
+<<<<<<< HEAD
 image.addInfo();
 
 console.log(imageOptions[0].upvotes + "bannana Votes");
+=======
+image.addInfo();
+>>>>>>> e84e2ca239a95176d94e7b167059e29d3d712795
