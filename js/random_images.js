@@ -5,22 +5,6 @@ var imageTracker = function (name, source) {
   this.name = name;
 };
 
-/*
-  this.addInfo = function() {
-    var locationRow = document.createElement("tr");
-    var newTable = document.createElement("td");
-    newTable.innerText = this.name;
-    locationRow.appendChild(newTable);
-
-    var table = document.getElementById("voteTotal");
-    table.appendChild(locationRow);
-
-    var voteCount = document.createElement("td");
-    voteCount.innerText = this.upVotes;
-    locationRow.appendChild(voteCount);
-  };
-}
-*/
 
 var imageOptions = [
   new imageTracker("Banana", "images/banana.jpg"),
@@ -41,75 +25,55 @@ var imageOptions = [
 
 window.addEventListener("load", randomImageSelector, false);
 
-var imagePanel = document.getElementById("images-holder");
+var imagePanel = document.getElementById("image-container");
 
 imagePanel.addEventListener("click", recordClick, false);
 
 imagePanel.addEventListener("click", randomImageSelector, false);
 
-document.getElementById("reset-button").addEventListener("click", reset, false);
+document.getElementById("restart-button").addEventListener("click", reset, false);
 
 var pickedImages = []; // This is our memory - tracks which images we have shown
 
 var clickCounter = 0;
 
-/*
- document.getElementById("image1").addEventListener("click", recordClick);
- document.getElementById("image2").addEventListener("click", recordClick);
- document.getElementById("image3").addEventListener("click", recordClick);
- document.getElementById("image-container").addEventListener("click", recordClick);
- */
 
- function randomImageSelector() {
-   chosenImages = [];
-   var resetButtonQuery = document.querySelector("input#reset-button");
+function randomImageSelector() {
+   pickedImages = [];
+   var resetButtonQuery = document.querySelector("input#restart-button");
    for (var imageId = 1; imageId <= 3; imageId++) {
      do {
        var index = Math.floor(Math.random() * 14);
-     } while (chosenImages.indexOf(index) >= 0);
-     var source = possibleImages[index].imageSource;
+     } while (pickedImages.indexOf(index) >= 0);
+     var source = imageOptions[index].imageSource;
      document.getElementById("image"+imageId).src = source;
-     chosenImages.push(index);
+     pickedImages.push(index);
    }
    var clickDisplay = document.getElementById("click-counter");
    clickDisplay.innerHTML = "";
    var clickDisplayNode = document.createTextNode("You have made " + clickCounter + " picks of 15.");
    clickDisplay.appendChild(clickDisplayNode);
    if (clickCounter < 15) {
-     var resetButtonQuery = document.querySelector("input#reset-button");
+     var resetButtonQuery = document.querySelector("input#restart-button");
      resetButtonQuery.style.display = "none";
      console.log();
      } else if (clickCounter == 15) {
-       var imagesHolderQuery = document.querySelector("div#images-holder");
-       imagesHolderQuery.style.display = "none";
+       var imagesContainerQuery = document.querySelector("div#image-container");
+       imagesContainerQuery.style.display = "none";
        resetButtonQuery.style.display = "block";
        seeResultsQuery.style.display = "block";
        seeResults();
      }
  };
 
-/*
-function getThreeImages() {
-  pickedImages = []; // Empty this so that we can track 3 new images
-  for (var imageID = 1; imageID <= 3; imageID++) {
-    do { // Get a random index value for our image
-      var index = Math.floor(Math.random() * 6);
-    } while (pickedImages.indexOf(index) >= 0); // keep trying until it's unique
-    var source = imageOptions[index].imageSource; // Get the source for the image
-    document.getElementById("image"+imageID).src = source; // update the image with the new source
-    pickedImages.push(index); // add the image location to our memory for later use
-  }
-}
-
-*/
 
 function recordClick(event) {
   var clickedImage = event.target;
   console.log(clickedImage);
-  totalClicks++;
-  console.log(totalClicks + "Total Clicks");
   var clickedImageSource = clickedImage.src;
   console.log("Clicked SRC: "+clickedImageSource);
+  clickCounter++;
+  console.log(clickCounter);
   for (var index = 0; index < imageOptions.length; index++) {
     console.log("  Compare to: "+imageOptions[index].imageSource);
     if (clickedImageSource.indexOf(imageOptions[index].imageSource) >= 0) {
@@ -117,22 +81,25 @@ function recordClick(event) {
       console.log("    Clicked Item: "+imageOptions[index].name);
     } // if (clickedImageSource.indexOf(imageOptions[index].imageSource) >= 0)
   } // for (var index = 0; index < imageOptions.length; index++)
-}
+};
 
+/*
 getThreeImages();
 var image = imageOptions[0];
 image.addInfo();
 
 console.log(imageOptions[0].upvotes + "bannana Votes");
+*/
 
+var seeResultsQuery = document.querySelector("div.results-div");
 
 function reset(event) {
   clickCounter = 0;
   seeResultsQuery.style.display = "none";
   var clearSeeResults = document.getElementById("vote-results");
   clearSeeResults.innerHTML = "";
-  var imagesHolderQuery = document.querySelector("div#images-holder");
-  imagesHolderQuery.style.display = "flex";
+  var imagesContainerQuery = document.querySelector("div#image-container");
+  imagesContainerQuery.style.display = "flex";
   randomImageSelector();
 };
 
@@ -165,11 +132,11 @@ function showVotingTable(event) {
     for (var j = 0; j <= 13; j++) {
       var newImageRow = document.createElement("tr");
       var imageNameCell = document.createElement("td");
-      var imageNameCellData = document.createTextNode(possibleImages[j].name);
+      var imageNameCellData = document.createTextNode(imageOptions[j].name);
       imageNameCell.appendChild(imageNameCellData);
       newImageRow.appendChild(imageNameCell);
       var imageVoteCell = document.createElement("td");
-      var imageVoteCellData = document.createTextNode(possibleImages[j].forVotes);
+      var imageVoteCellData = document.createTextNode(imageOptions[j].forVotes);
       imageVoteCell.appendChild(imageVoteCellData);
       newImageRow.appendChild(imageVoteCell);
       table.appendChild(newImageRow);
