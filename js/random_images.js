@@ -56,7 +56,6 @@ function randomImageSelector() {
    if (clickCounter < 15) {
      var resetButtonQuery = document.querySelector("input#restart-button");
      resetButtonQuery.style.display = "none";
-     console.log();
      } else if (clickCounter == 15) {
        var imagesContainerQuery = document.querySelector("div#image-container");
        imagesContainerQuery.style.display = "none";
@@ -136,7 +135,7 @@ function showVotingTable(event) {
       imageNameCell.appendChild(imageNameCellData);
       newImageRow.appendChild(imageNameCell);
       var imageVoteCell = document.createElement("td");
-      var imageVoteCellData = document.createTextNode(imageOptions[j].forVotes);
+      var imageVoteCellData = document.createTextNode(imageOptions[j].upVotes);
       imageVoteCell.appendChild(imageVoteCellData);
       newImageRow.appendChild(imageVoteCell);
       table.appendChild(newImageRow);
