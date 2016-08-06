@@ -1,0 +1,13 @@
+#image-container {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 250px;
+  margin: 25px;
+}
+
+h2 {
+  font-family: 'Oswald';
+}
