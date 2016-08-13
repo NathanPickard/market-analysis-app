@@ -2,6 +2,7 @@
 var imageTracker = function (name, source) {
   this.imageSource = source;
   this.y = 0;  // upVotes is changed to 'y' for use in CanvasJS
+  this.label = name;
   this.name = name;
 };
 
@@ -18,7 +19,7 @@ var imageOptions = [
   new imageTracker("Shark", "images/shark.jpg"),
   new imageTracker("Sweep", "images/sweep.jpg"),
   new imageTracker("Unicorn", "images/unicorn.jpg"),
-  new imageTracker("Usb", "images/usb.jpg"),
+  new imageTracker("USB", "images/usb.jpg"),
   new imageTracker("Water Can", "images/water_can.jpg"),
   new imageTracker("Wine Glass", "images/wine_glass.jpg"),
 ];
@@ -61,7 +62,8 @@ function randomImageSelector() {
        imagesContainerQuery.style.display = "none";
        resetButtonQuery.style.display = "block";
        seeResultsQuery.style.display = "block";
-       showVotingTable();
+       showVotingChart();
+       //showVotingTable();
      }
  };
 
@@ -99,8 +101,7 @@ function reset(event) {
 };
 
 
-
-
+/*  *Commented out for assignment 11*
 
 // Creates voting results table
 function showVotingTable(event) {
@@ -141,3 +142,5 @@ function showVotingTable(event) {
       table.appendChild(newImageRow);
     }
 };
+
+*/
