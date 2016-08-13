@@ -1,7 +1,7 @@
 //var totalClicks = 0;
 var imageTracker = function (name, source) {
   this.imageSource = source;
-  this.upVotes = 0;
+  this.y = 0;  // upVotes is changed to 'y' for use in CanvasJS
   this.name = name;
 };
 
@@ -76,21 +76,17 @@ function recordClick(event) {
   for (var index = 0; index < imageOptions.length; index++) {
     console.log("  Compare to: "+imageOptions[index].imageSource);
     if (clickedImageSource.indexOf(imageOptions[index].imageSource) >= 0) {
-      imageOptions[index].upVotes++;
+      imageOptions[index].y++;
       console.log("    Clicked Item: "+imageOptions[index].name);
     } // if (clickedImageSource.indexOf(imageOptions[index].imageSource) >= 0)
   } // for (var index = 0; index < imageOptions.length; index++)
 };
 
-/*
-getThreeImages();
-var image = imageOptions[0];
-image.addInfo();
-
-console.log(imageOptions[0].upvotes + "bannana Votes");
-*/
-
 var seeResultsQuery = document.querySelector("div.results-div");
+
+function showVotingChart() {
+  drawChart();
+}
 
 function reset(event) {
   clickCounter = 0;
@@ -101,6 +97,10 @@ function reset(event) {
   imagesContainerQuery.style.display = "flex";
   randomImageSelector();
 };
+
+
+
+
 
 // Creates voting results table
 function showVotingTable(event) {
@@ -135,36 +135,9 @@ function showVotingTable(event) {
       imageNameCell.appendChild(imageNameCellData);
       newImageRow.appendChild(imageNameCell);
       var imageVoteCell = document.createElement("td");
-      var imageVoteCellData = document.createTextNode(imageOptions[j].upVotes);
+      var imageVoteCellData = document.createTextNode(imageOptions[j].y);
       imageVoteCell.appendChild(imageVoteCellData);
       newImageRow.appendChild(imageVoteCell);
       table.appendChild(newImageRow);
     }
 };
-
-var chart;
-
-function drawChart() {
-  var chartProperties = {
-		title:{
-			text: "Voting Results"
-		},
-		data: [
-		{
-			// Change type to "doughnut", "line", "splineArea", etc.
-			type: "column",
-			dataPoints: [
-				{ label: "apple",  y: 10  },
-				{ label: "orange", y: 15  },
-				{ label: "banana", y: 25  },
-				{ label: "mango",  y: 30  },
-				{ label: "grape",  y: 28  }
-			]
-		}
-		]
-	};
-  chart = new CanvasJS.Chart("chart-container", chartProperties);
-	chart.render();
-}
-
-window.addEventListener("load", drawChart);
