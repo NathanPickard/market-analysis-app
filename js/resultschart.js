@@ -15,6 +15,5 @@ function drawChart() {
 	};
   chart = new CanvasJS.Chart("chart-container", chartProperties);
 	chart.render();
-}
 
-//window.addEventListener("load", drawChart);
+}

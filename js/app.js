@@ -131,4 +131,12 @@ function marketing() {
   drawChart();
 }
 
+/*transition
+function hideBlock(event) {
+  event.target.setAttribute("class", "hide");
+}
+document.getElementById('chart-container').addEventListener("click", hideBlock);
+*/
+
+
 loadImageObject();

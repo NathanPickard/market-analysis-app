@@ -25,6 +25,10 @@ body {
   background-color: lightyellow;
 }
 
+.hide {
+  opacity: 0;
+}
+
 
 button {
   margin-top: 20px;
@@ -44,4 +48,14 @@ button {
   border-style: dotted;
   padding: 10px;
   display: inline-block;
+}
+
+#chart-container {
+  transition-property: width;
+  transition-duration: 3s;
+  transition-timing-function: linear;
+}
+
+#chart-container:hover {
+  width: 700px;
 }
