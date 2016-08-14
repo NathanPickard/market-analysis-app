@@ -9,6 +9,10 @@ img {
   border-style: ridge;
 }
 
+img:hover {
+  opacity: 0.6;
+}
+
 h1 {
   font-family: 'Oswald';
   border-style: solid;
