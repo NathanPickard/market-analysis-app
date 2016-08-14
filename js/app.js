@@ -1,4 +1,6 @@
-//var totalClicks = 0;
+//global variable
+chartDiv = document.querySelector("#chart-container");
+
 var imageTracker = function (name, source) {
   this.imageSource = source;
   this.y = 0;  // upVotes is changed to 'y' for use in CanvasJS
@@ -62,6 +64,7 @@ function randomImageSelector() {
        imagesContainerQuery.style.display = "none";
        resetButtonQuery.style.display = "block";
        seeResultsQuery.style.display = "block";
+       chartDiv.style.visibility = "visible";
        showVotingChart();
        //showVotingTable();
      }
@@ -91,6 +94,7 @@ function showVotingChart() {
 }
 
 function reset(event) {
+  chartDiv.style.visibility = "hidden"
   clickCounter = 0;
   seeResultsQuery.style.display = "none";
   var clearSeeResults = document.getElementById("vote-results");
