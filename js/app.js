@@ -1,8 +1,10 @@
 //global variable
-chartDiv = document.querySelector("#chart-container");
+var chartDiv = document.querySelector("#chart-container");
 
 var imageTracker = function (name, source) {
   this.imageSource = source;
+  this.totalUpVotes = 0;
+  this.userUpVotes = 0;
   this.y = 0;  // upVotes is changed to 'y' for use in CanvasJS
   this.label = name;
   this.name = name;
@@ -66,7 +68,6 @@ function randomImageSelector() {
        seeResultsQuery.style.display = "block";
        chartDiv.style.visibility = "visible";
        showVotingChart();
-       //showVotingTable();
      }
  };
 
@@ -81,15 +82,33 @@ function recordClick(event) {
   for (var index = 0; index < imageOptions.length; index++) {
     console.log("  Compare to: "+imageOptions[index].imageSource);
     if (clickedImageSource.indexOf(imageOptions[index].imageSource) >= 0) {
+      imageOptions[index].totalUpVotes++;
+      imageOptions[index].userUpVotes++;
       imageOptions[index].y++;
       console.log("    Clicked Item: "+imageOptions[index].name);
     } // if (clickedImageSource.indexOf(imageOptions[index].imageSource) >= 0)
   } // for (var index = 0; index < imageOptions.length; index++)
+
+  localStorage.setItem("votes",JSON.stringify(imageOptions));
 };
+
+function loadImageObject() {
+  if (localStorage.getItem("votes") == null) {
+    localStorage.setItem("votes",JSON.stringify(imageOptions));
+  } else {
+    imageOptions = JSON.parse(localStorage.getItem("votes"));
+    for (i = 0; i < imageOptions.length; i++) {
+      imageOptions[i].userUpVotes = 0;
+    };
+  }
+}
 
 var seeResultsQuery = document.querySelector("div.results-div");
 
 function showVotingChart() {
+  for (i = 0; i < imageOptions.length; i++) {
+    imageOptions[i].y = imageOptions[i].userUpVotes;
+  };
   drawChart();
 }
 
@@ -104,47 +123,12 @@ function reset(event) {
   randomImageSelector();
 };
 
+function marketing() {
+  for (i = 0; i < imageOptions.length; i++) {
+    imageOptions[i].y = imageOptions[i].totalUpVotes;
+  };
+  chartDiv.style.visibility = "visible";
+  drawChart();
+}
 
-/*  *Commented out for assignment 11*
-
-// Creates voting results table
-function showVotingTable(event) {
-    var votingResults = document.getElementById("vote-results");
-    var newTable = document.createElement("table");
-    newTable.id = "vote-totals";
-    votingResults.appendChild(newTable);
-    // Creates table header
-    var table = document.getElementById("vote-totals");
-    var tableHeader = document.createElement("tr");
-    var tableHeaderCell = document.createElement("th");
-    tableHeaderCell.setAttribute("colspan", "2");
-    var tableHeaderName = document.createTextNode("Total User Votes");
-    tableHeaderCell.appendChild(tableHeaderName);
-    tableHeader.appendChild(tableHeaderCell);
-    table.appendChild(tableHeader);
-    // Creates column headers
-    var tableHeaderRow = document.createElement("tr");
-    tableHeaderCell = document.createElement("th");
-    var tableHeaderData = document.createTextNode("Product Name")
-    tableHeaderCell.appendChild(tableHeaderData);
-    tableHeaderRow.appendChild(tableHeaderCell);
-    tableHeaderCell = document.createElement("th");
-    tableHeaderData = document.createTextNode("Votes")
-    tableHeaderCell.appendChild(tableHeaderData);
-    tableHeaderRow.appendChild(tableHeaderCell);
-    table.appendChild(tableHeaderRow);
-    for (var j = 0; j <= 13; j++) {
-      var newImageRow = document.createElement("tr");
-      var imageNameCell = document.createElement("td");
-      var imageNameCellData = document.createTextNode(imageOptions[j].name);
-      imageNameCell.appendChild(imageNameCellData);
-      newImageRow.appendChild(imageNameCell);
-      var imageVoteCell = document.createElement("td");
-      var imageVoteCellData = document.createTextNode(imageOptions[j].y);
-      imageVoteCell.appendChild(imageVoteCellData);
-      newImageRow.appendChild(imageVoteCell);
-      table.appendChild(newImageRow);
-    }
-};
-
-*/
+loadImageObject();
