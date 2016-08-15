@@ -1,0 +1,43 @@
+#image-container {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  width: 250px;
+  margin: 25px;
+  border-style: ridge;
+}
+
+h1 {
+  font-family: 'Oswald';
+  border-style: solid;
+  display: inline-block;
+  padding: 5px;
+  background-color: lightblue;
+}
+
+body {
+  background-color: lightyellow;
+}
+
+
+button {
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  background-color: lightblue;
+  padding: 15px;
+}
+
+#restart-button {
+  margin-left: 50px;
+  background-color: lightblue;
+  padding: 15px;
+}
+
+#click-counter {
+  border-style: dotted;
+  padding: 10px;
+  display: inline-block;
+}
