@@ -1,0 +1,60 @@
+#image-container {
+  display: flex;
+  justify-content: center;
+  transition: all 2s;
+}
+
+#chart-container {
+  transition: all 1.5s;
+}
+
+#chart-container:hover {
+  opacity: 0.7;
+}
+
+img {
+  width: 250px;
+  margin: 25px;
+  border-style: ridge;
+}
+
+img:hover {
+  opacity: 0.6;
+}
+
+.off-screen {
+  margin-left: -710px;
+}
+
+h1 {
+  font-family: 'Oswald';
+  border-style: solid;
+  display: inline-block;
+  padding: 5px;
+  background-color: lightblue;
+}
+
+body {
+  background-color: lightyellow;
+}
+
+
+button {
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  background-color: lightblue;
+  padding: 15px;
+}
+
+#restart-button {
+  margin-left: 50px;
+  background-color: lightblue;
+  padding: 15px;
+}
+
+#click-counter {
+  border-style: dotted;
+  padding: 10px;
+  display: inline-block;
+}

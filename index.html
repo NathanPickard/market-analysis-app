@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bus Mall Focus Group</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Oswald">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="page-title" >Bus Mall - Focus group</h1>
+        <h3>Instructions:</h3>
+        <h4>Please pick the product you would most likely want to buy.  After 15 votes, your results will be shown.
+        </h4>
+        <h4>You may vote again by clicking 'Vote again!' after voting or click on 'Marketer Report' to see the overall total results.
+        </h4>
+        <h5>Thank you for participating!</h5>
+    </header>
+    <h4 id="click-counter"></h4>
+    <input id="restart-button" type="button" value="Vote again!">
+    <button type="button" onclick="marketing()">Marketer Report</button>
+    <div class="results-div">
+        <section id="vote-results">
+        </section>
+    </div>
+    <div id="image-container" class="off-screen">
+        <div><img id="image1"></div>
+        <div><img id="image2"></div>
+        <div><img id="image3"></div>
+    </div>
+    <div id="chart-container"></div>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/canvasjs.min.js"></script>
+    <script type="text/javascript" src="js/resultschart.js"></script>
+</body>
+
+</html>
