@@ -17,3 +17,10 @@ function drawChart() {
 	chart.render();
 
 }
+
+// transition
+function hideBlock(event) {
+  event.target.setAttribute("class", "hide");
+}
+
+document.getElementById('chart-container').addEventListener("click", hideBlock);
